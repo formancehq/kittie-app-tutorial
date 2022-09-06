@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+export const signedIn = () => {
+  return( (localStorage.jwt == undefined) ? false : true);
+}
+
 export const signOut = () => {
-  localStorage.jwt = '';
+  localStorage.removeItem('jwt');
   window.location.href = '/login';
 }
 

@@ -31,6 +31,14 @@ export const Button = (props: any) => {
       color: '#1D2025',
       fontWeight: 'bold',
     };
+    delete heritedProps.secondary;
+  }
+
+  if (props.disabled) {
+    sx = {
+      ...sx,
+      opacity: 0.5,
+    };
   }
 
   return (

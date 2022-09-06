@@ -2,20 +2,23 @@ import { Client, envs } from 'stytch';
 import { User } from '../db/entities/User';
 import { createToken } from './jwt';
 
-const client = new Client({
-  env: envs.test,
-  project_id: 'project-test-a5af3d9b-a236-4833-ac7c-885f10676eef',
-  secret: 'secret-test-WwzCRSjMcv92lngpp8w1ukuwG9186gaqQl0=',
-});
+const client = () : Client => {
+  return new Client({
+    env: envs.test,
+    project_id: `${process.env.STYTCH_PROJECT_ID}`,
+    secret: `${process.env.STYTCH_SECRET}`,
+  });
+};
 
 export const loginOrCreate = async (phone_number: string) => {
-  const {phone_id, user_created, user_id} = await client.otps.sms.loginOrCreate({
+  const {phone_id, user_created, user_id} = await client().otps.sms.loginOrCreate({
     phone_number,
   });
 
   if (user_created) {
     const u = new User();
     u.stytchId = user_id;
+    u.phoneNumber = phone_number;
     await u.save();
   }
 
@@ -23,7 +26,7 @@ export const loginOrCreate = async (phone_number: string) => {
 }
 
 export const authenticate = async (method_id: string, code: string) => {
-  const {user_id} = await client.otps.authenticate({
+  const {user_id} = await client().otps.authenticate({
     method_id,
     code,
   });

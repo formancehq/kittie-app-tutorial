@@ -7,6 +7,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+import { Login } from './pages/Login';
+import { Logout } from './pages/Logout';
 import { Home } from './pages/Home';
 import './global.css';
 
@@ -25,9 +28,19 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
+
+          {/*Account management*/}
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/logout">
+              <Logout></Logout>
+            </Route>
+
             <Route path="/">
               <Home></Home>
             </Route>
+
           </Switch>
         </Router>
       </ThemeProvider>

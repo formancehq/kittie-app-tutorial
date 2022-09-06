@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
+import { User } from "./entities/User";
 
-const entities: string[] = [
+const entities = [
+  User,
 ];
 
 var _db;

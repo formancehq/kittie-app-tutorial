@@ -2,12 +2,9 @@ import { Avatar, Box, Container, Typography } from '@mui/material';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import QrCode from '@mui/icons-material/QrCode';
+import IconFriends from '@mui/icons-material/Contacts';
 
 export const Navbar = () => {
-  const showQrCode = () => {
-    window.location.href = '/code';
-  };
-
   return (
     <>
       <Container>
@@ -16,17 +13,19 @@ export const Navbar = () => {
         }} pt={2} alignItems="center">
           <div>
             <Link to="/">
-              <Typography fontSize={22} fontFamily="Josefin Sans">kittie</Typography>
+              <Typography fontSize={22} fontWeight="bold">Kittie</Typography>
             </Link>
           </div>
-          <Box ml={'auto'} display="flex" gap={2} alignItems="center">
-            <Link to="/">
-              <Avatar sx={{
-                width: '32px',
-                height: '32px',
-                fontSize: '16px',
-              }}>CS</Avatar>
-            </Link>
+          <Box sx={{
+              ml: 'auto',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              gap: 2,
+              'a': {
+                display: 'flex',
+              }
+            }}>
           </Box>
         </Box>
       </Container>

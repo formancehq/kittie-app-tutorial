@@ -3,9 +3,9 @@ import { User } from '../db/entities/User';
 import { createToken } from './jwt';
 
 const client = new Client({
-  env: envs.test,
-  project_id: 'project-test-a5af3d9b-a236-4833-ac7c-885f10676eef',
-  secret: 'secret-test-WwzCRSjMcv92lngpp8w1ukuwG9186gaqQl0=',
+  env: envs.test, //TODO make this configurable
+  project_id: process.env['STYTCH_PROJECT_ID'] || "",
+  secret: process.env['STYTCH_SECRET'] || "",
 });
 
 export const loginOrCreate = async (phone_number: string) => {
@@ -14,9 +14,13 @@ export const loginOrCreate = async (phone_number: string) => {
   });
 
   if (user_created) {
+    console.log("+++ Created new user " + user_id);
     const u = new User();
     u.stytchId = user_id;
     await u.save();
+    const allUsers = await User.find();
+  } else {
+    console.log("+++ Found existing user " + user_id);
   }
 
   return phone_id;

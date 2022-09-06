@@ -12,7 +12,9 @@
   },
   "scripts": {
     "backend": "yarn ts-node-dev src/server-app/api/main.ts",
-    "frontend": "yarn parcel src/front-app/index.html"
+    "frontend": "yarn parcel src/front-app/index.html",
+    "ledger": "numary server start --debug",
+    "stripe": "stripe listen --forward-to localhost:3022/api/hooks/stripe"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",

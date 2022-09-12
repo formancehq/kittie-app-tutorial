@@ -35,11 +35,8 @@ export const Login = () => {
     });
 
     if (res.data.jwt) {
-      console.log("LOGGED IN");
       setJwt(res.data.jwt);
     } else {
-      console.log("NOPE");
-      console.log(JSON.stringify(res));
       signOut();
     }
   }

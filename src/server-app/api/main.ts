@@ -15,10 +15,25 @@ import cors from 'cors';
 
 // Routes
 import { app as auth } from './auth';
+import { app as wallets } from './wallets';
+import { app as hooks } from './hooks';
 
 const app = express();
 
-app.use(express.json());
+// Use JSON parser for all non-webhook routes
+app.use(
+  (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ): void => {
+    if (req.originalUrl === '/api/hooks/stripe') {
+      next();
+    } else {
+      express.json()(req, res, next);
+    }
+  }
+);
 
 app.use(cors({
     origin: '*',
@@ -31,10 +46,13 @@ app.use('/api', jwt({
 }).unless({
   path: [
     /^\/api\/auth/,
+    /^\/api\/hooks/,
   ],
 }));
 
 app.use('/api/auth', auth);
+app.use('/api/wallets', wallets);
+app.use('/api/hooks', hooks);
 
 (async () => {
   await db.initialize();

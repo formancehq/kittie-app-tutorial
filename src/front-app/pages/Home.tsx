@@ -78,7 +78,9 @@ const LoggedIn = () => {
           gap: 4,
           pt: 3,
         }}>
-      {/* future action icons here */}
+          <ActionIcon path="/deposit" text="Top-up" icon={
+            <IconBalance/>
+          }/>
         </Box>
       </Container>
     </>

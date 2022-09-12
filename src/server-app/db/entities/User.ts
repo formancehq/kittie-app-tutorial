@@ -1,14 +1,27 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({
     nullable: true,
   })
-  name: string;
+  fullname: string;
+
+  @Column({
+    nullable: true,
+  })
+  email: string;
+
+  @Column({
+    nullable: true,
+  })
+  dob: Date;
+
+  @Column()
+  phoneNumber: string;
 
   @Column()
   stytchId: string;

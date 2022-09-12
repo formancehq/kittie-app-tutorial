@@ -11,6 +11,7 @@ import {
 import { Login } from './pages/Login';
 import { Logout } from './pages/Logout';
 import { Home } from './pages/Home';
+import { Deposit } from './pages/Deposit';
 import './global.css';
 
 const theme = createTheme({
@@ -35,6 +36,11 @@ const App = () => {
             </Route>
             <Route path="/logout">
               <Logout></Logout>
+            </Route>
+
+            {/*Money matters*/}
+            <Route path="/deposit">
+              <Deposit></Deposit>
             </Route>
 
             <Route path="/">

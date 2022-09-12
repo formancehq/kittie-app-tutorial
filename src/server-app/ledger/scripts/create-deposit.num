@@ -1,0 +1,9 @@
+vars {
+  monetary $amount
+  account $deposit
+}
+
+send $amount (
+  source = @world
+  destination = $deposit
+)

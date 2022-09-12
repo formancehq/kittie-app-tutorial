@@ -1,0 +1,9 @@
+vars {
+  account $deposit
+  account $user = meta($deposit, "user")
+}
+
+send [EUR/2 *] (
+  source = $deposit
+  destination = $user
+)

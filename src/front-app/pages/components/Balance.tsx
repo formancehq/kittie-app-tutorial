@@ -7,7 +7,15 @@ export const Balance = () => {
   const [balances, setBalances] = React.useState(initial);
 
   React.useEffect(() => {
-    setBalances({'EUR/2': 0}); // placeholder for later
+    (async () => {
+      const res = await api.get('/wallets/balance');
+
+      if (res.status !== 200) {
+        return;
+      }
+
+      setBalances(res.data);
+    })();
   }, []);
 
   return (
